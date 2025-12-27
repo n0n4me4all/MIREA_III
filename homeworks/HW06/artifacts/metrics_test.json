@@ -1,0 +1,40 @@
+{
+  "results": [
+    {
+      "accuracy": 0.9295833333333333,
+      "f1": 0.8875582168995343,
+      "roc_auc": 0.9712733609263116,
+      "model": "HistGradientBoosting"
+    },
+    {
+      "accuracy": 0.9258333333333333,
+      "f1": 0.8792401628222524,
+      "roc_auc": 0.9665757833528008,
+      "model": "RandomForest"
+    },
+    {
+      "accuracy": 0.8691666666666666,
+      "f1": 0.7942332896461337,
+      "roc_auc": 0.9097569162307654,
+      "model": "DecisionTree"
+    },
+    {
+      "accuracy": 0.8275,
+      "f1": 0.7076271186440678,
+      "roc_auc": 0.8746905312071505,
+      "model": "LogReg(scaled)"
+    },
+    {
+      "accuracy": 0.8275,
+      "f1": 0.7076271186440678,
+      "roc_auc": 0.8746905312071505,
+      "model": "LogReg(scaled)"
+    },
+    {
+      "accuracy": 0.6766666666666666,
+      "f1": 0.0,
+      "roc_auc": 0.5,
+      "model": "Dummy(most_frequent)"
+    }
+  ]
+}
