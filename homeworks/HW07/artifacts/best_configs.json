@@ -1,0 +1,17 @@
+{
+  "dataset_1": {
+    "method": "DBSCAN",
+    "eps": 2.0,
+    "min_samples": 3
+  },
+  "dataset_2": {
+    "method": "DBSCAN",
+    "eps": 0.7,
+    "min_samples": 3
+  },
+  "dataset_3": {
+    "method": "Agglomerative",
+    "k": 2,
+    "linkage": "average"
+  }
+}
