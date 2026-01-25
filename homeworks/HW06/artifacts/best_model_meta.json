@@ -3,8 +3,7 @@
   "test_metrics": {
     "accuracy": 0.9295833333333333,
     "f1": 0.8875582168995343,
-    "roc_auc": 0.9712733609263116,
-    "model": "HistGradientBoosting"
+    "roc_auc": 0.9712733609263116
   },
   "search_summary": {
     "best_params": {
