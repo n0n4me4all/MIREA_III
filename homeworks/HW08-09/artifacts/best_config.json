@@ -1,0 +1,20 @@
+{
+  "dataset": "EMNIST_balanced",
+  "seed": 42,
+  "batch_size": 1024,
+  "val_ratio": 0.2,
+  "hidden_sizes": [
+    512,
+    256,
+    128
+  ],
+  "dropout_p": 0.3,
+  "use_batchnorm": false,
+  "optimizer": "Adam",
+  "lr": 0.001,
+  "weight_decay": 0.0,
+  "early_stopping": {
+    "patience": 5,
+    "mode": "max"
+  }
+}
