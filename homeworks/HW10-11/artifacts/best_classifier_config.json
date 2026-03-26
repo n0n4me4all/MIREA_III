@@ -1,0 +1,15 @@
+{
+  "dataset": "STL10",
+  "seed": 42,
+  "best_experiment_id": "C4",
+  "model": "resnet18-finetune (layer4 + fc trainable)",
+  "batch_size": 128,
+  "epochs": 6,
+  "optimizer": "Adam",
+  "lr": 0.0002,
+  "transforms": {
+    "base": "ToTensor + Normalize(STL10 stats)",
+    "aug": "RandomHorizontalFlip + RandomCrop + ColorJitter + Normalize",
+    "resnet": "ResNet18_Weights.DEFAULT.transforms()"
+  }
+}
