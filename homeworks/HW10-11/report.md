@@ -51,12 +51,8 @@
 
 ## 5. Часть B: постановка задачи и режимы оценки (V1-V2)
 
-### Если выбран detection track
-
-
 ### Если выбран segmentation track
 
-- Выбран трек: segmentation
 - Модель: DeepLabV3_ResNet50 (pretrained)
 - Что считается foreground: пиксели объекта (pet + contour), бинарно
 - V1: базовая постобработка (raw binary mask)
@@ -74,7 +70,7 @@
 - Кривые лучшего прогона классификации: `./artifacts/figures/classification_curves_best.png`
 - Сравнение C1-C4: `./artifacts/figures/classification_compare.png`
 - Визуализация аугментаций: `./artifacts/figures/augmentations_preview.png`
-- Визуализации второй части: визуализация сегментации: `./artifacts/figures/segmentation_examples.png`; визуализация метрик сегментации: `./artifacts/figures/segmentation_metrics.png`
+- Визуализации второй части: `./artifacts/figures/segmentation_examples.png`, `./artifacts/figures/segmentation_metrics.png`
 
 Короткая сводка (6-10 строк):
 
