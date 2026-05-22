@@ -1,0 +1,37 @@
+project:
+  name: citibike-hourly-demand
+  timezone: America/New_York
+  seed: 42
+
+data:
+  # Период реальных данных (поездки + погода за те же даты).
+  # Варианты:
+  #   один год:  start_date: "2023-01-01", end_date: "2023-12-31"
+  #   два года:  start_date: "2023-01-01", end_date: "2024-12-31"
+  start_date: "2023-01-01"
+  end_date: "2024-12-31"
+  citibike_raw_dir: data/raw/citibike
+  weather_raw_path: data/raw/weather/weather_hourly.csv
+  processed_path: data/processed/hourly_demand.parquet
+  use_synthetic: false
+
+weather:
+  latitude: 40.7128
+  longitude: -74.0060
+  source: open-meteo
+
+model:
+  backend: sklearn
+  horizon: 24
+  min_history_hours: 168
+  val_days: 14
+  test_days: 14
+  artifact_path: artifacts/model.joblib
+  feature_schema_path: artifacts/feature_schema.json
+  metrics_path: artifacts/metrics.json
+
+service:
+  host: 0.0.0.0
+  port: 8000
+  log_level: INFO
+  version: "1.0.0"

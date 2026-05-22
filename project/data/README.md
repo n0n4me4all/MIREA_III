@@ -22,3 +22,5 @@
      - небольшой пример (sample) для демонстрации.
 
 Рекомендуется добавить в этот файл (или отдельный `data_description.md`) описание того, какие файлы тут используются и откуда они взялись.
+
+Источники: Citi Bike trip data и данные погоды Open-Meteo. Обращение к данным поезок по прямому архиву `https://s3.amazonaws.com/tripdata/index.html`, к погоде `https://open-meteo.com/en/docs/historical-weather-api`. Сырые данные в папке raw (в git ignore), в репо - processed (уже почасовой спрос + погода). Период: 2023-01-01 - 2024-12-31 (configs/config.yaml).

@@ -14,16 +14,16 @@
 
 | #  | Критерий                                                                 | Да/Нет (студент) | Где смотреть / комментарий                          |
 |----|---------------------------------------------------------------------------|------------------|-----------------------------------------------------|
-| 1  | Сервис запускается по инструкциям из `project/README.md` и работает      |                  | Например: `README.md`, раздел «Как запустить»       |
-| 2  | Endpoint `/predict` использует **реальную модель**, а не заглушку        |                  | Например: `src/service/`, `src/models/`             |
-| 3  | Есть EDA и хотя бы один эксперимент с метриками                          |                  | Например: `notebooks/01_eda.ipynb`, `report.md`     |
-| 4  | Есть baseline и улучшенная модель, есть **сравнение по метрикам**        |                  | Например: `notebooks/02_baselines.ipynb`, `report.md` |
-| 5  | Код не свален в один ноутбук: есть внятная структура в `src/`            |                  | Например: `src/data/`, `src/models/`, `src/service/` |
-| 6  | Есть Dockerfile **или** понятный сценарий развёртывания без Docker       |                  | Например: `Dockerfile` или шаги в `README.md`       |
-| 7  | Есть `.env.example` и **нет** в репозитории реальных секретов/паролей    |                  | `.env.example`, `SECURITY.md`, отсутствие `.env`    |
-| 8  | Реализованы логи/наблюдаемость (хотя бы консольные логи + `/health`)     |                  | Например: использование `logging`, endpoint `/health` |
-| 9  | В `report.md` **обоснован выбор финальной модели** по результатам экспериментов |           | `report.md`, разделы про результаты и выбор модели  |
-| 10 | `project/README.md` и `report.md` позволяют понять сценарий демонстрации |                  | Разделы «Как запустить», «Демонстрация на защите»   |
+| 1  | Сервис запускается по инструкциям из `project/README.md` и работает      |✅| `README.md`, раздел 4.2 "Запуск сервиса", проверка работоспособности через Swagger по `/docs`, либо прямой curl, либо с `python -m src.service.client` для удобства. Запуск через venv с requirements.txt и с существующей model.joblib|
+| 2  | Endpoint `/predict` использует **реальную модель**, а не заглушку        |✅| `src/service/app.py` по `predict_hourly()` и `joblib.load(artifacts/model.joblib)`; модель — HistGradientBoostingRegressor из `src/models/train.py`|
+| 3  | Есть EDA и хотя бы один эксперимент с метриками                          |✅| EDA: `notebooks/01_eda.ipynb`. Метрики: `artifacts/metrics.json`, ноутбуки `02_baselines.ipynb`, `03_model_comparison.ipynb`, `04_ablation_weather.ipynb`; ablation — `artifacts/ablation_metrics.json`. Описание в report.md п. 3.3, 4.2, 5.2.|
+| 4  | Есть baseline и улучшенная модель, есть **сравнение по метрикам**        |✅| Baseline: `seasonal_naive_24h / 168h` в `src/models/baselines.py`, MAE 889 / 1782 на test. Улучшенная модель: `sklearn_boosting`, MAE 258.76 (metrics.json). Сравнение: в report.md п. 5.2 и `03_model_comparison.ipynb`|
+| 5  | Код не свален в один ноутбук: есть внятная структура в `src/`            |✅| `src/data/`, `features/`, `models/`, `service/`, `analysis/`, `utils/`; |
+| 6  | Есть Dockerfile **или** понятный сценарий развёртывания без Docker       |✅| `project/Dockerfile` (копирует artifacts/, data/processed/, src/). Плюс явный без Docker в README.md п. 4.2 через uvicorn.|
+| 7  | Есть `.env.example` и **нет** в репозитории реальных секретов/паролей    |✅| `configs/.env.example` (CONFIG_PATH, LOG_LEVEL); `.env` в `project/.gitignore`, поэтому в репозитории нет закоммиченного `.env`|
+| 8  | Реализованы логи/наблюдаемость (хотя бы консольные логи + `/health`)     |✅| `src/utils/logging.py`. При старте - лог загрузки модели, при `/predict` — horizon, history_len, latency_ms. `GET /health`, `GET /model-info`|
+| 9  | В `report.md` **обоснован выбор финальной модели** по результатам экспериментов |✅| `report.md` п.4-5. final_model в `metrics.json`.|
+| 10 | `project/README.md` и `report.md` позволяют понять сценарий демонстрации |✅| `README.md` п.7 и `report.md` п.9.|
 
 ---
 

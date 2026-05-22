@@ -1,0 +1,139 @@
+{
+  "models": {
+    "seasonal_naive_24h": {
+      "mae": 889.3290734824282,
+      "rmse": 1277.3404453858534,
+      "smape": 0.43856459922393276
+    },
+    "seasonal_naive_168h": {
+      "mae": 1781.715976331361,
+      "rmse": 2611.4792833444567,
+      "smape": 0.6465217958351542
+    },
+    "weather_only_boosting": {
+      "mae": 1393.4006427389043,
+      "rmse": 1768.1673636484672,
+      "smape": 0.6999249032160293
+    },
+    "calendar_only_boosting": {
+      "mae": 1328.1804218005072,
+      "rmse": 1804.8168624156385,
+      "smape": 0.5338463239587226
+    },
+    "lags_calendar_boosting": {
+      "mae": 267.97846653915167,
+      "rmse": 513.0229096055726,
+      "smape": 0.14672560326370807
+    },
+    "full_boosting": {
+      "mae": 258.7594729340504,
+      "rmse": 485.99514327286516,
+      "smape": 0.14995785964556654
+    },
+    "ridge_full": {
+      "mae": 587.3657094994702,
+      "rmse": 825.1031211007152,
+      "smape": 0.4462120404147394
+    }
+  },
+  "feature_sets": {
+    "weather_only_boosting": [
+      "temperature_2m",
+      "precipitation",
+      "wind_speed_10m",
+      "relative_humidity_2m",
+      "weather_code"
+    ],
+    "calendar_only_boosting": [
+      "hour_sin",
+      "hour_cos",
+      "dow_sin",
+      "dow_cos",
+      "is_weekend",
+      "is_holiday",
+      "month"
+    ],
+    "lags_calendar_boosting": [
+      "hour_sin",
+      "hour_cos",
+      "dow_sin",
+      "dow_cos",
+      "is_weekend",
+      "is_holiday",
+      "month",
+      "lag_1h",
+      "lag_24h",
+      "lag_168h",
+      "rolling_mean_24h",
+      "rolling_mean_168h"
+    ],
+    "full_boosting": [
+      "hour_sin",
+      "hour_cos",
+      "dow_sin",
+      "dow_cos",
+      "is_weekend",
+      "is_holiday",
+      "month",
+      "temperature_2m",
+      "precipitation",
+      "wind_speed_10m",
+      "relative_humidity_2m",
+      "weather_code",
+      "lag_1h",
+      "lag_24h",
+      "lag_168h",
+      "rolling_mean_24h",
+      "rolling_mean_168h"
+    ]
+  },
+  "ridge_coefficients_top10": {
+    "lag_1h": 1864.4150030579683,
+    "lag_168h": 1110.0983558676865,
+    "lag_24h": 874.1312151800811,
+    "hour_sin": 344.6960110920644,
+    "rolling_mean_168h": -344.620140132407,
+    "temperature_2m": 241.42954229187433,
+    "weather_code": -207.89062081976144,
+    "hour_cos": -152.08206447690574,
+    "rolling_mean_24h": 109.8797771672223,
+    "relative_humidity_2m": -87.00551068395454
+  },
+  "partial_correlations": [
+    {
+      "feature": "temperature_2m",
+      "pearson_raw": 0.5167284684359487,
+      "partial_vs_calendar": 0.43336902651185316
+    },
+    {
+      "feature": "precipitation",
+      "pearson_raw": -0.09534424490816233,
+      "partial_vs_calendar": -0.13510910173926804
+    },
+    {
+      "feature": "wind_speed_10m",
+      "pearson_raw": 0.12286447186411753,
+      "partial_vs_calendar": -0.05339899284707871
+    },
+    {
+      "feature": "relative_humidity_2m",
+      "pearson_raw": -0.4699258578806631,
+      "partial_vs_calendar": -0.17766817530885232
+    },
+    {
+      "feature": "weather_code",
+      "pearson_raw": -0.12839578578021574,
+      "partial_vs_calendar": -0.233031328453901
+    }
+  ],
+  "interpretation": {
+    "weather_only_mae_minus_full": 1134.641169804854,
+    "lags_calendar_mae_minus_full": 9.218993605101275,
+    "full_minus_naive_24h": -630.5696005483778,
+    "note": "weather_only_mae_minus_full >> 0: без лагов погода не прогнозирует спрос. lags_calendar_mae_minus_full < 0: на test лаги+календарь могут быть чуть лучше полной (погода коррелирует, но не всегда улучшает MAE). partial_vs_calendar — связь погоды со спросом после учёта часа/дня недели."
+  },
+  "test_period": {
+    "test_days": 14,
+    "val_days": 14
+  }
+}
